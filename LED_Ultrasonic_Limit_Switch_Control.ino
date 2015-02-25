@@ -62,11 +62,24 @@ void loop() {
     sonar2avg = 100;
   }
   
+  // Print diagnostic data
+  Serial.print(maxDist);
+  Serial.print("\t");              
+  Serial.print(sonar1avg);
+  Serial.print("\t");              
+  Serial.print(sonar2avg);
+  Serial.print("\t");              
+  Serial.print(switch1);
+  Serial.print("\t");              
+  Serial.print(switch2);
+  Serial.print("\t");                
+  
   //Detect objects
   if(sonar1avg <= maxDist || switch1 == false){          
     //Turn the LED's on
     rightLED.run(BACKWARD);
-    Serial.println("Right light on");
+    Serial.print("Right light on");
+    Serial.print("\t");              
   }
   else{
     rightLED.run(FORWARD);
@@ -74,10 +87,12 @@ void loop() {
   if(sonar2avg <= maxDist || switch2 == false){                     
     //Turn the LED's on
     leftLED.run(BACKWARD);
-    Serial.println("Left light on");
+    Serial.print("Left light on");
   }
   else{
     leftLED.run(FORWARD);
   }
-  Serial.println();
+  
+  //Print new line
+  Serial.print("\n");
 }
