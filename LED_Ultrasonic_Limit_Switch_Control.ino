@@ -55,7 +55,7 @@ void loop() {
   sonar1avg = sonar1avg/avgCount;
   sonar2avg = sonar2avg/avgCount;
   
-  potVal = analogRead(potVal);
+  potVal = analogRead(potPin);
   maxDist = map(potVal, 0, 1023, 2, 10);
   
   //Change 0's to 6's
