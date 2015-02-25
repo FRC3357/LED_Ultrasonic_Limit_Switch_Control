@@ -48,12 +48,8 @@ void loop() {
   switch1 = digitalRead(switchPin1);
   switch2 = digitalRead(switchPin2);
   
-  for(i = 0; i <= avgCount; i++){
-    sonar1avg = sonar1avg + sonar1.ping_cm();
-    sonar2avg = sonar2avg + sonar2.ping_cm();
-  }
-  sonar1avg = sonar1avg/avgCount;
-  sonar2avg = sonar2avg/avgCount;
+  sonar1avg = sonar1.ping_cm();
+  sonar2avg = sonar2.ping_cm();
   
   potVal = analogRead(potPin);
   maxDist = map(potVal, 0, 1023, 2, 10);
