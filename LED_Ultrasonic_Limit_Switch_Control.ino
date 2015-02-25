@@ -9,7 +9,7 @@ AF_DCMotor rightLED(2);
 //Create data variables
 int potVal = 0;
 int maxDist = 0;
-int potPin = A1;
+int potPin = A0;
 int sonar1avg = 0;
 int sonar2avg = 0;
 int avgCount = 6;
@@ -21,9 +21,9 @@ boolean switch1 = false;
 boolean switch2 = false;
 
 //Create new sonars
-NewPing sonar1(A2,A3,100);
-NewPing sonar2(A4,A5,100);
-
+//NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE)
+NewPing sonar1(10,9,100);
+NewPing sonar2(A2,A1,100);
 void setup() {
   //Set speed
   leftLED.setSpeed(255);
