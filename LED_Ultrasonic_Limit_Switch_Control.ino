@@ -12,8 +12,6 @@ int maxDist = 0;
 int potPin = A0;
 int sonar1avg = 0;
 int sonar2avg = 0;
-int avgCount = 6;
-int i = 0;
 int minDist = 2;
 int switchPin1 = 5;
 int switchPin2 = 6;
@@ -40,9 +38,6 @@ void setup() {
 }
 
 void loop() {
-  //Reset averages
-  sonar1avg = 0;
-  sonar2avg = 0;
   
   //Get data
   switch1 = digitalRead(switchPin1);
