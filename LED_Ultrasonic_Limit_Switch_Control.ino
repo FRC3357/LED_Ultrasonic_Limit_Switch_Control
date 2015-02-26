@@ -22,8 +22,8 @@ boolean switch2 = false;
 
 //Create new sonars
 //NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE)
-NewPing sonar1(10,9,100);
-NewPing sonar2(A2,A1,100);
+NewPing sonar1(A2,A1,100);
+NewPing sonar2(10,9,100);
 void setup() {
   //Set speed
   leftLED.setSpeed(255);
