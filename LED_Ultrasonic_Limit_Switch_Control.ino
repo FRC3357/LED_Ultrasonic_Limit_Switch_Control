@@ -10,18 +10,22 @@ AF_DCMotor rightLED(2);
 int potVal = 0;
 int maxDist = 0;
 int potPin = A0;
-int sonar1avg = 0;
-int sonar2avg = 0;
+int rightSonar = 0;
+int leftSonar = 0;
 int minDist = 2;
-int switchPin1 = 5;
-int switchPin2 = 6;
-boolean switch1 = false;
-boolean switch2 = false;
+int rightSwitchPin = 5;
+int leftSwitchPin = 6;
+boolean rightSwitch = false;
+boolean leftSwitch = false;
+int triggerPin1 = A2;
+int echoPin1 = A1;
+int triggerPin2 = 10;
+int echoPin2 = 9;
 
 //Create new sonars
-//NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE)
-NewPing sonar1(A2,A1,100);
-NewPing sonar2(10,9,100);
+NewPing sonar1(triggerPin1,echoPin1,100);
+NewPing sonar2(triggerPin2,echoPin2,100);
+
 void setup() {
   //Set speed
   leftLED.setSpeed(255);
@@ -33,44 +37,44 @@ void setup() {
   
   //Set pin modes
   pinMode(potPin, INPUT);
-  pinMode(switchPin1, INPUT);
-  pinMode(switchPin2, INPUT);
+  pinMode(rightSwitchPin, INPUT);
+  pinMode(leftSwitchPin, INPUT);
 }
 
 void loop() {
   
   //Get data
-  switch1 = digitalRead(switchPin1);
-  switch2 = digitalRead(switchPin2);
+  rightSwitch = digitalRead(rightSwitchPin);
+  leftSwitch = digitalRead(leftSwitchPin);
   
-  sonar1avg = sonar1.ping_cm();
-  sonar2avg = sonar2.ping_cm();
+  rightSonar = sonar1.ping_cm();
+  leftSonar = sonar2.ping_cm();
   
   potVal = analogRead(potPin);
   maxDist = map(potVal, 0, 1023, 2, 10);
   
   //Change 0's to 6's
-  if(sonar1avg < minDist){
-    sonar1avg = 100;
+  if(rightSonar < minDist){
+    rightSonar = 100;
   }
-  if(sonar2avg < minDist){
-    sonar2avg = 100;
+  if(leftSonar < minDist){
+    leftSonar = 100;
   }
   
   // Print diagnostic data
   Serial.print(maxDist);
   Serial.print("\t");              
-  Serial.print(sonar1avg);
+  Serial.print(rightSonar);
   Serial.print("\t");              
-  Serial.print(sonar2avg);
+  Serial.print(leftSonar);
   Serial.print("\t");              
-  Serial.print(switch1);
+  Serial.print(rightSwitch);
   Serial.print("\t");              
-  Serial.print(switch2);
+  Serial.print(leftSwitch);
   Serial.print("\t");                
   
   //Detect objects
-  if(sonar1avg <= maxDist || switch2 == false){          
+  if(rightSonar <= maxDist || leftSwitch == false){          
     //Turn the LED's on
     rightLED.run(BACKWARD);
     Serial.print("Right light on");
@@ -79,7 +83,7 @@ void loop() {
   else{
     rightLED.run(FORWARD);
   }
-  if(sonar2avg <= maxDist || switch1 == false){                     
+  if(leftSonar <= maxDist || rightSwitch == false){                     
     //Turn the LED's on
     leftLED.run(BACKWARD);
     Serial.print("Left light on");
