@@ -70,7 +70,7 @@ void loop() {
   Serial.print("\t");                
   
   //Detect objects
-  if(sonar1avg <= maxDist || switch1 == false){          
+  if(sonar1avg <= maxDist || switch2 == false){          
     //Turn the LED's on
     rightLED.run(BACKWARD);
     Serial.print("Right light on");
@@ -79,7 +79,7 @@ void loop() {
   else{
     rightLED.run(FORWARD);
   }
-  if(sonar2avg <= maxDist || switch2 == false){                     
+  if(sonar2avg <= maxDist || switch1 == false){                     
     //Turn the LED's on
     leftLED.run(BACKWARD);
     Serial.print("Left light on");
