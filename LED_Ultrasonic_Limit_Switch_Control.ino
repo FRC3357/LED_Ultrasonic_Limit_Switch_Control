@@ -6,21 +6,39 @@
 AF_DCMotor leftLED(1);
 AF_DCMotor rightLED(2);
 
+// Assign I/O
+
+// Analog
+int potPin = A0;
+int echoPin1 = A1;
+int triggerPin1 = A2;
+// A4  I2C (SDA)
+// A5  I2C (SCL)
+
+//Digital (PWM)
+// 0   (Serial) RX
+// 1   (Serial) TX
+// 2   (Mouse) data
+// 3   (Motor) PWM2B
+// 4   (Motor) DIR_CLK
+int rightSwitchPin = 5;
+int leftSwitchPin = 6;
+// 7   (Motor) DIR_EN
+// 8   (Motor) DIR_SER
+int echoPin2 = 9;
+int triggerPin2 = 10;
+//11   (Motor) PWM2A
+//12   (Motor) DIR_LATCH
+//13   (Mouse) clock
+
 //Create data variables
 int potVal = 0;
 int maxDist = 0;
-int potPin = A0;
 int rightSonar = 0;
 int leftSonar = 0;
 int minDist = 2;
-int rightSwitchPin = 5;
-int leftSwitchPin = 6;
 boolean rightSwitch = false;
 boolean leftSwitch = false;
-int triggerPin1 = A2;
-int echoPin1 = A1;
-int triggerPin2 = 10;
-int echoPin2 = 9;
 
 //Create new sonars
 NewPing sonar1(triggerPin1,echoPin1,100);
